@@ -326,3 +326,14 @@ function imgToCanvasWithOrientation(img, width, height, orientation) {
 浏览器的“休眠”模式，页面未激活状态时，浏览器为节省性能，会停止或减少定时任务
 ### 解决方案：
 使用visibilitychange监听页面是否可见（激活）去重新拉取后台时间，使用setTimeout去进行倒计时，setTimeout会有误差，每次执行需要计算出减去误差后的时间作为下次执行的间隔
+
+## ios手机上input输入框设置opacity会导致聚焦拉起键盘时，不会把输入框挤到可视区域
+### 原因：
+设置opacity小于等于0.01时，就会出现这个问题
+### 解决方案：
+设置opacity大于0.01
+```css
+.box {
+    opacity:0.011
+}
+```
