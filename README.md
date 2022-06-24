@@ -235,7 +235,7 @@ backface-visibility: hidden;
 }
 ```
 
-## ios手机，输入框聚焦不灵敏
+## <div id="iosInput">ios手机，输入框聚焦不灵敏([推荐使用另一方案解决](#delay))</div>
 ### 原因：
 为解决移动端300ms延迟的问题，我们引入了fastclick.js这个库，ios11.3对事件支持 {passive: false}被动模式，passive: false会永远不调用event.preventDefault()，如果调用客户端会报错，fastclick是采用拦截click和监听touch事件去实现的，里面包括对tagetElement的focus方法重写，因此在11.3之前可能event.preventDefault生效了，同时用setSelectionRange是可以聚焦input的
 ### 解决方案：
@@ -337,3 +337,24 @@ function imgToCanvasWithOrientation(img, width, height, orientation) {
     opacity:0.011
 }
 ```
+## <div id="delay">移动端300ms延迟问题</div>
+### 原因：
+历史包袱问题：以前网站都是为大屏幕电脑设计的，手机上预览就会导致内容被缩小了，为解决这个问题，就约定双击屏幕就将网页等比例放大缩小，如何判断用户是否是双击了呢？那就在首次点击后等待300毫秒，判断用户是否再次点击了屏幕，点击了就判断是双击。这也是会有上述 300 毫秒延迟的主要原因
+### 解决方案：
+1.在HTML文档头部添加如下meta标签,添加了user-scalable=no会禁止缩放
+```html
+<meta name="viewport" content="width=device-width,user-scalable=no">
+```
+2.CSS touch-action属性
+```css
+html {
+    touch-action: none
+}
+```
+3.(不推荐使用，[作者在github有说明](https://github.com/ftlabs/fastclick)，并且还会有在[ios手机上input输入框聚焦不灵敏的问题](#iosInput))使用fastclick.js，这是一个轻量级库文件。我们引入库文件之后，添加如下代码就可以了。
+```js
+window.addEventListener( "load", function() {
+FastClick.attach( document.body );
+}, false );
+```
+
