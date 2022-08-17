@@ -357,4 +357,14 @@ window.addEventListener( "load", function() {
 FastClick.attach( document.body );
 }, false );
 ```
-
+## 设置元素溢出隐藏时（overflow:hidden），部分安卓手机会把文字的头部切掉
+### 原因：
+因为使用了rem的原因
+### 解决方案：
+给元素设置line-height的值大于设置的font-size的值
+```css
+.test {
+  font-size: 20px;
+  line-height: 24px
+}
+```
