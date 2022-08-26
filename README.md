@@ -368,9 +368,9 @@ FastClick.attach( document.body );
   line-height: 24px
 }
 ```
-## vite3创建的vue项目本地开发服务在ios12.1及以下版本的手机上白屏（感谢叶同学提供此问题及解决方案）
+## vite3创建的vue3项目本地开发服务在ios12.1及以下版本的手机上白屏（感谢叶同学提供此问题及解决方案）
 ### 原因：
-globalThis为undefined的原因
+globalThis为undefined的原因，[globalThis的兼容性](https://caniuse.com/?search=globalThis)
 ### 解决方案：
 给在入口的html文件将globalThis指向window
 ```html
