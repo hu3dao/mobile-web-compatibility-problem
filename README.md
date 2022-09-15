@@ -382,4 +382,4 @@ globalThis为undefined的原因，[globalThis的兼容性](https://caniuse.com/?
 ### 原因：
 转换需要给图片设置允许跨域，但是在ios手机上允许跨域和给src赋值有顺序的区别
 ### 解决方案：
-先给Image对象设置允许跨域，再给Image独享的src赋值
+先给Image对象设置允许跨域，再给Image对象的src赋值
