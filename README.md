@@ -378,3 +378,8 @@ globalThis为undefined的原因，[globalThis的兼容性](https://caniuse.com/?
   if (globalThis === undefined) { var globalThis = window; }
 </script>
 ```
+## ios手机上将图片转成base64失败（感谢国梁同学提供此问题）
+### 原因：
+转换需要给图片设置允许跨域，但是在ios手机上允许跨域和给src赋值有顺序的区别
+### 解决方案：
+先给Image对象设置允许跨域，再给Image独享的src赋值
